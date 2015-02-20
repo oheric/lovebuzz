@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150214223522) do
+ActiveRecord::Schema.define(version: 20150220004916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,19 +21,33 @@ ActiveRecord::Schema.define(version: 20150214223522) do
     t.boolean  "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "quiz_id"
   end
+
+  add_index "questions", ["quiz_id"], name: "index_quiz_id", using: :btree
 
   create_table "quizzes", force: true do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "quizzes", ["user_id"], name: "index_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
+    t.date     "birthday"
+    t.string   "gender"
+    t.string   "orientation"
+    t.integer  "zipcode"
+    t.string   "country"
+    t.string   "username"
+    t.string   "userbio"
   end
 
 end

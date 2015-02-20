@@ -35,5 +35,7 @@ end
 it { should ensure_length_of(:password).is_at_least(6) }
 it { should ensure_length_of(:password).is_at_most(20) }
 it { should ensure_length_of(:email).is_at_most(255) }
+# test for has_many association
+it { should have_many(:quizzes) }
 
 end
