@@ -1,0 +1,8 @@
+<h1>LoveBuzz</h1>
+
+<p>Hi <%= @user.name %>,</p>
+
+<p>
+Welcome to LoveBuzz! Click on the link below to activate your account: </p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activate_token, email: @user.email) %>
