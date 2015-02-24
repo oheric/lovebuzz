@@ -9,7 +9,10 @@ Lovebuzz::Application.routes.draw do
   # get 'users/1' => 'users#show'
   resources :users
   resources :account_activations, only: [:edit]
+  # resources :password_resets, only: [:new, :edit, :update]
 
+  get 'password_resets/new' => 'password_resets#new', as: :password_resets
+  post 'password_resets/new' => 'password_resets#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
