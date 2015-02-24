@@ -8,7 +8,9 @@ Lovebuzz::Application.routes.draw do
 
   # get 'users/1' => 'users#show'
   resources :users
-  resources :account_activations, only: [:edit]
+  # resources :account_activations, only: [:edit]
+
+  get 'account_activations/edit' => 'account_activations#edit', as: :edit_account_activation
   # resources :password_resets, only: [:new, :edit, :update]
 
   get 'password_resets/new' => 'password_resets#new', as: :password_resets
