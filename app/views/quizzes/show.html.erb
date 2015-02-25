@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-</head>
-<body>
-  <h1>Which food matches your personality?</h1>
+<h1>Quiz</h1>
+<div>
+  <strong> Name: </strong>
+<%= @quiz.name %>
+</div>
 
-</body>
-</html>
+<ol>
+  <% @questions.each do |q| %>
+    <li><%= q.content %></li>
+  <% end %>
+</ol>
+
+<div>
+  <%= link_to "Edit", edit_quiz_path(@quiz) %> |  
+  <%= link_to "Destroy", @quiz, :confirm => 'Are you sure?', :method => :delete %> |  
+  <%= link_to "View All", quizzes_path %>  
+</div>

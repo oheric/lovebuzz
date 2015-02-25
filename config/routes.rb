@@ -6,7 +6,7 @@ Lovebuzz::Application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  get 'quizzes/new' => 'quizzes#new', as: :quizzes
+  resources :quizzes
 
   # get 'users/1' => 'users#show'
   resources :users
