@@ -2,11 +2,16 @@
 <div>
   <strong> Name: </strong>
 <%= @quiz.name %>
-</div>
+</div><br>
 
 <ol>
   <% @questions.each do |q| %>
     <li><%= q.content %></li>
+    <ul>
+    <% q.answers.each do |a| %>
+      <li><%= a.content %></li>
+      <% end %>
+    </ul>
   <% end %>
 </ol>
 

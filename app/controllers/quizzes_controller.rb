@@ -11,7 +11,10 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
-    3.times { @quiz.questions.build }
+    3.times do 
+      question = @quiz.questions.build
+      4.times { question.answers.build }
+    end
   end  
 
   def create
@@ -49,7 +52,9 @@ class QuizzesController < ApplicationController
 
     def quiz_params
       params.require(:quiz).permit(:name, 
-        :questions_attributes => [:id, :content])
+        :questions_attributes => [:id, :content,
+        :answers_attributes => [:id, :content]
+        ])
     end
 
 end
