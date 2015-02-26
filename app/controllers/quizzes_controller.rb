@@ -28,6 +28,23 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
   end
 
+  def update
+    @quiz = Quiz.find(params[:id])
+    if @quiz.update_attributes(quiz_params)
+      flash[:success] = "Quiz updated"
+      redirect_to @quiz
+      # Handle a successful update
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    Quiz.find(params[:id]).destroy
+    flash[:success] = "Quiz deleted"
+    redirect_to quizzes_url
+  end
+
   private
 
     def quiz_params

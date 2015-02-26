@@ -6,7 +6,9 @@
 <%= f.fields_for :questions do |builder| %>
 
   <%= builder.label :content, "Question" %><br>
-  <%= builder.text_area :content, :rows => 3 %>
+  <%= builder.text_area :content, :rows => 3 %><br>
+  <%= builder.check_box :_destroy %>
+  <%= builder.label :_destroy, "Remove Question" %>
 
 <% end %>
   <div class="actions">
