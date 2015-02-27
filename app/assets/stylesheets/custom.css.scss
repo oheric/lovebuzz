@@ -145,6 +145,17 @@ input {
   height: auto !important;
 }
 
+fieldset { 
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0;
+    padding-right: 0;
+    border: 2px groove (internal value);
+}
+
 #error_explanation {
   color: red;
   ul {

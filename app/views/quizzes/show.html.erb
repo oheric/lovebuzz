@@ -7,19 +7,19 @@
 <ol>
   <% @questions.each do |q| %>
     <li><%= q.content %></li>
-    <ul>
+    
     <% q.answers.each do |a| %>
-      <li><%= a.content %></li>
-      <% end %>
-    </ul>
+      <input type="radio" name="a" value="4"><%= a.content %>
+    <% end %>
+    
   <% end %>
 </ol>
 
 <div>
-  <% if current_user.admin? %>
+  
     <%= link_to "Edit", edit_quiz_path(@quiz) %> |  
     <%= link_to "Destroy", @quiz, :confirm => 'Are you sure?', :method => :delete %> |  
-  <% end %>
+
   
   <%= link_to "Quizzes Page", quizzes_path %>  
 </div>
