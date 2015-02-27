@@ -1,1 +1,8 @@
 <h1>Quiz Index Page</h1>
+
+<% @quiz.each do |q| %>
+<table>
+<tr><%=link_to q.name, quiz_path(q)%></tr>
+</table>
+<% end %>
+<%= link_to "Create a New Quiz", new_quiz_path %>
