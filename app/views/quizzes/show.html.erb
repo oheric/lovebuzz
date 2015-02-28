@@ -5,21 +5,20 @@
 </div><br>
 
 <ol>
-  <% @questions.each do |q| %>
-    <li><%= q.content %></li>
-    
+<% @questions.each do |q| %>
+  <li>
+    <%= q.content %>
+    <ul> 
     <% q.answers.each do |a| %>
-      <input type="radio" name="a" value="4"><%= a.content %>
+      <li><%= a.content %></li>
     <% end %>
-    
+    </ul>
+  </li>
   <% end %>
 </ol>
 
 <div>
-  
     <%= link_to "Edit", edit_quiz_path(@quiz) %> |  
     <%= link_to "Destroy", @quiz, :confirm => 'Are you sure?', :method => :delete %> |  
-
-  
-  <%= link_to "Quizzes Page", quizzes_path %>  
+    <%= link_to "Quizzes Page", quizzes_path %>  
 </div>
