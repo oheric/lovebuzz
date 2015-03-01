@@ -4,18 +4,14 @@
 <%= @quiz.name %>
 </div><br>
 
-<ol>
+<form>
 <% @questions.each do |q| %>
-  <li>
-    <%= q.content %>
-    <ul> 
+  <%= q.content %> 
     <% q.answers.each do |a| %>
-      <li><%= a.content %></li>
+      <input type="radio" value=<%=a.option_value%> name=<%=q.id%>><%= a.content %><p>
     <% end %>
-    </ul>
-  </li>
   <% end %>
-</ol>
+</form>
 
 <div>
     <%= link_to "Edit", edit_quiz_path(@quiz) %> |  
