@@ -43,7 +43,8 @@ class QuizzesController < ApplicationController
   end
 
   def destroy
-    Quiz.find(params[:id]).destroy
+    @quiz = Quiz.find(params[:id])
+    @quiz.destroy
     flash[:success] = "Quiz deleted"
     redirect_to quizzes_url
   end
@@ -52,8 +53,8 @@ class QuizzesController < ApplicationController
 
     def quiz_params
       params.require(:quiz).permit(:name, 
-        :questions_attributes => [:id, :content,
-        :answers_attributes => [:id, :content]
+        :questions_attributes => [:id, :content, :_destroy,
+        :answers_attributes => [:id, :content, :_destroy]
         ])
     end
 
