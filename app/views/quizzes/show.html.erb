@@ -4,14 +4,26 @@
 <%= @quiz.name %>
 </div><br>
 
-<form>
+
+<%= form_for :results, :url => quizzes_path do |f| %>
 <% @questions.each do |q| %>
-  <%= q.content %> 
+  <%=f.label :question, q.content %> 
     <% q.answers.each do |a| %>
-      <input type="radio" value=<%=a.option_value%> name=<%=q.id%>><%= a.content %><p>
+    <%= f.radio_button q.id, a.option_value %><%= a.content %><br><br>
     <% end %>
-  <% end %>
-</form>
+    <% end %>
+     <div class="actions">
+        <%= f.submit "Submit", :name => 'quiz_results' %>
+      </div>
+    <% end %>
+
+<% if params[:quiz_results] %>
+<div id = "quizresults">
+  <h2>It works</h2>
+</div>
+<% end %>
+ 
+
 
 <div>
     <%= link_to "Edit", edit_quiz_path(@quiz) %> |  

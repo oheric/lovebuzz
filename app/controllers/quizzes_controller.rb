@@ -11,7 +11,8 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
-    3.times do 
+    3.times do
+      result = @quiz.results.build 
       question = @quiz.questions.build
       4.times { question.answers.build }
     end
@@ -19,6 +20,9 @@ class QuizzesController < ApplicationController
 
   def create
     @quiz = Quiz.new(quiz_params)
+if params[:quiz_results] || !quiz.save
+  render :action => 'show'
+else
     if @quiz.save
       flash[:notice] = "Successfully created quiz."
       redirect_to @quiz
@@ -26,6 +30,7 @@ class QuizzesController < ApplicationController
       render :action => 'new'
     end
   end
+end
 
   def edit 
     @quiz = Quiz.find(params[:id])
@@ -52,7 +57,8 @@ class QuizzesController < ApplicationController
   private
 
     def quiz_params
-      params.require(:quiz).permit(:name, 
+      params.require(:quiz).permit(:name, :results,
+        :results_attributes => [:id, :content, :_destroy, :result_value], 
         :questions_attributes => [:id, :content, :_destroy,
         :answers_attributes => [:id, :content, :_destroy, :option_value]
         ])

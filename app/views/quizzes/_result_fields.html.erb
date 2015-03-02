@@ -1,0 +1,8 @@
+<fieldset>
+  <%= f.label :content, "Result" %>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "Remove Result", '#', class: "remove_fields" %>
+  <%= f.text_area :content, :rows => 3 %><br>
+  <%= f.label :result_value, "Result Value" %>
+  <%= f.number_field :result_value %>
+</fieldset>
