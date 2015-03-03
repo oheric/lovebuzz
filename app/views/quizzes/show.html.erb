@@ -1,15 +1,15 @@
 <h1>Quiz</h1>
 <div>
   <strong> Name: </strong>
-
+<%= @quiz.name %>
 </div><br>
 
 
-<%= form_for :results, :url => { :action => "createresults" } do |f| %>
+<%= form_for :quiz, :url => { :action => "create" } do |f| %>
 <% @questions.each do |q| %>
   <%=f.label :question, q.content %> 
     <% q.answers.each do |a| %>
-    <%= f.radio_button q.id, a.option_value %><%= a.content %><br><br>
+    <%= f.radio_button :id, a.option_value %><%= a.content %><br><br>
     <% end %>
     <% end %>
      <div class="actions">
