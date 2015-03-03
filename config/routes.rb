@@ -8,6 +8,10 @@ Lovebuzz::Application.routes.draw do
 
   resources :quizzes
 
+  post 'quizzes/createtrait' => 'quizzes#createtrait'
+
+  resources :traits
+
   # get 'users/1' => 'users#show'
   resources :users
   resources :account_activations, only: [:edit]

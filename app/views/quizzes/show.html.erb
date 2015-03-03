@@ -5,15 +5,20 @@
 </div><br>
 
 
-<%= form_for :quiz, :url => { :action => "create" } do |f| %>
+<%= form_for @trait, :url => { :action => "createtrait" } do |f| %>
 <% @questions.each do |q| %>
   <%=f.label :question, q.content %> 
     <% q.answers.each do |a| %>
-    <%= f.radio_button :id, a.option_value %><%= a.content %><br><br>
+    <%= f.radio_button :content, "wtf" %><%= a.content %><br><br>
     <% end %>
     <% end %>
      <div class="actions">
         <%= f.submit "Submit", :name => 'quiz_results' %>
+      </div>
+
+
+    <div class="actions">
+        <%= f.submit "Submit2" %>
       </div>
     <% end %>
 
@@ -24,9 +29,3 @@
 <% end %>
  
 
-
-<div>
-    <%= link_to "Edit", edit_quiz_path(@quiz) %> |  
-    <%= link_to "Destroy", @quiz, :confirm => 'Are you sure?', :method => :delete %> |  
-    <%= link_to "Quizzes Page", quizzes_path %>  
-</div>

@@ -7,6 +7,7 @@ class QuizzesController < ApplicationController
   def show
     @quiz = Quiz.find(params[:id])
     @questions = @quiz.questions
+    @trait = Trait.new
   end
 
   def new
@@ -20,9 +21,6 @@ class QuizzesController < ApplicationController
 
   def create
     @quiz = Quiz.new(quiz_params)
-if params[:quiz_results] || !quiz.save
-  render :action => 'show'
-else
     if @quiz.save
       flash[:notice] = "Successfully created quiz."
       redirect_to @quiz
@@ -30,21 +28,19 @@ else
       render :action => 'new'
     end
   end
-end
 
-# def createresults
-#   @results = Result.new(results_params)
-#   if params[:quiz_results] || !quiz.save
-#   render :action => 'show'
-# else
-#     if @quiz.save
-#       flash[:notice] = "Successfully created quiz."
-#       redirect_to @quiz
-#     else
-#       render :action => 'new'
-#     end
-#   end
-# end
+  def createtrait
+    @quiz = Quiz.new(params[:id])
+    @questions = @quiz.questions
+    @trait = Trait.new(trait_params)
+    if params[:quiz_results] || !@trait.save
+      render :action => 'show'
+    else
+      flash[:notice] = "Successfull created trait."
+      redirect_to @quiz
+    end
+  end
+
 
   def edit 
     @quiz = Quiz.find(params[:id])
@@ -78,12 +74,7 @@ end
         ])
     end
 
-    # def results_params
-    #   params.require(:results).permit(:name, :results,
-    #     :results_attributes => [:id, :content, :_destroy, :result_value], 
-    #     :questions_attributes => [:id, :content, :_destroy,
-    #     :answers_attributes => [:id, :content, :_destroy, :option_value]
-    #     ])
-    # end
-
+    def trait_params
+      params.require(:trait).permit(:content)
+    end
 end
