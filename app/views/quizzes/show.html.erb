@@ -1,11 +1,11 @@
 <h1>Quiz</h1>
 <div>
   <strong> Name: </strong>
-<%= @quiz.name %>
+
 </div><br>
 
 
-<%= form_for :results, :url => quizzes_path do |f| %>
+<%= form_for :results, :url => { :action => "createresults" } do |f| %>
 <% @questions.each do |q| %>
   <%=f.label :question, q.content %> 
     <% q.answers.each do |a| %>

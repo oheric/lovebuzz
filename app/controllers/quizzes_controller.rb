@@ -32,6 +32,20 @@ else
   end
 end
 
+def createresults
+  @results = Result.new(results_params)
+  if params[:quiz_results] || !quiz.save
+  render :action => 'show'
+else
+    if @quiz.save
+      flash[:notice] = "Successfully created quiz."
+      redirect_to @quiz
+    else
+      render :action => 'new'
+    end
+  end
+end
+
   def edit 
     @quiz = Quiz.find(params[:id])
   end
@@ -58,6 +72,14 @@ end
 
     def quiz_params
       params.require(:quiz).permit(:name, :results,
+        :results_attributes => [:id, :content, :_destroy, :result_value], 
+        :questions_attributes => [:id, :content, :_destroy,
+        :answers_attributes => [:id, :content, :_destroy, :option_value]
+        ])
+    end
+
+    def results_params
+      params.require(:results).permit(:name, :results,
         :results_attributes => [:id, :content, :_destroy, :result_value], 
         :questions_attributes => [:id, :content, :_destroy,
         :answers_attributes => [:id, :content, :_destroy, :option_value]
