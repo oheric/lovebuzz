@@ -4,28 +4,33 @@
 <%= @quiz.name %>
 </div><br>
 
-
-<%= form_for @trait, :url => { :action => "createtrait" } do |f| %>
+<%= form_for @trait, url: {action: "createtrait" } do |f| %>
 <% @questions.each do |q| %>
-  <%=f.label :question, q.content %> 
+    <%=f.label :question, q.content %> 
     <% q.answers.each do |a| %>
-    <%= f.radio_button :content, "wtf" %><%= a.content %><br><br>
-    <% end %>
-    <% end %>
-     <div class="actions">
-        <%= f.submit "Submit", :name => 'quiz_results' %>
-      </div>
+    <% if a == q.answers.last %>
+    <%= f.radio_button :name => q.id, :action => 'check', :value => a.option_value, :name => 'quiz_results', :onclick => "this.form.submit();" %>
+
+    <%= a.content.humanize %><br><br>
+    <% else %> 
+     <%= f.radio_button :name => q.id, :action => 'check', :value => a.option_value %>
+
+    <%= a.content.humanize %><br><br>
 
 
-    <div class="actions">
-        <%= f.submit "Submit2" %>
-      </div>
     <% end %>
-
-<% if params[:quiz_results] %>
-<div id = "quizresults">
-  <h2>It works</h2>
+    <% end %>
+    <% end %>
+    <% end %>
+    
+  
+<div>
+    <%= link_to "Edit", edit_quiz_path(@quiz) %> |  
+    <%= link_to "Destroy", @quiz, :confirm => 'Are you sure?', :method => :delete %> |  
+    <%= link_to "Quizzes Page", quizzes_path %>  
 </div>
-<% end %>
+
+
  
+
 

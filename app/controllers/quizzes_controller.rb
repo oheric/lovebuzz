@@ -34,11 +34,21 @@ class QuizzesController < ApplicationController
     @questions = @quiz.questions
     @trait = Trait.new(trait_params)
     if params[:quiz_results] || !@trait.save
-      render :action => 'show'
+      render 'show'
     else
       flash[:notice] = "Successfull created trait."
-      redirect_to @quiz
+      redirect_to traits_path
     end
+  end
+
+  def check
+    @quiz = Quiz.find(params[:id])
+    @array = []
+    @array.push(params[:value])
+    @freq = @array.inject(Hash.new(0)) { |h,v| h[v] += 1; h}
+    @most = @array.max_by { |v| freq[v]}
+    
+      
   end
 
 
