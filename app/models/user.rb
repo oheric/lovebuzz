@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   
   has_many :quizzes
   has_secure_password
-  has_many :microposts
+  has_many :microposts, dependent: :destroy
 
   # Returns the hash digest of the given string
   def User.digest(string)
