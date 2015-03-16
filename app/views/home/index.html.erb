@@ -4,6 +4,15 @@
   <title></title>
 </head>
 <body>
+  <% if logged_in? %>
+    <div class="row">
+      <aside class="col-md-4">
+        <section class="user_info">
+          <%= render 'shared/user_info' %>
+        </section>
+      </aside>
+    </div>
+  <% else %>
   <div class="center jumbotron">
     <h1><em><span style="color: red">Q</span>NDate</em></h1>
     <h2>
@@ -13,6 +22,6 @@
   </div>
   <%= link_to image_tag("logo-heart-370x370.png", alt: "LoveBuzz logo"), 
   'lovebuzz.com' %>
-
+<% end %>
 </body>
 </html>

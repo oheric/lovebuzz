@@ -16,6 +16,7 @@ Lovebuzz::Application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :microposts, only: [:create, :destroy]
 
   # get 'password_resets/new' => 'password_resets#new', as: :password_resets
   # post 'password_resets' => 'password_resets#create', as: :new_password_resets
